@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OOP HW.cpp">
+    <ClCompile Include="fractionMethods.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fractionHW.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
