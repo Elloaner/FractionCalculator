@@ -1,11 +1,14 @@
+#include <iostream>
 #include "fraction.h"
+
+using namespace std;
 
 int main()
 {
-    Fraction fraction;
-    fraction.cinNums();
-    system("cls");
-    fraction.operationFraction();
-    system("cls");
-    fraction.resultFraction();
+	Fraction calculator;
+	calculator.FractionInput();
+	int r_numerator, r_denominator;
+	calculator.FractionOperation(r_numerator, r_denominator);
+	system("cls");
+	calculator.FractionResult(r_numerator, r_denominator);
 }

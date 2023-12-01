@@ -1,106 +1,92 @@
+#include <iostream>
 #include "fraction.h"
 
 using namespace std;
 
-void Fraction::cinNums()
+void Fraction::FractionInput()
 {
-    cout << "Enter first fraction\nEnter numerator : ";
-    cin >> numerator;
-    cout << "Enter denominator : ";
-    cin >> denominator;
-    if (denominator == 0)
-    {
-        cout << "Denominator cannot be equal to zero" << endl;
-        denominator = 1;
-        system("cls");
-    }
-    cout << "Enter second fraction\nEnter numerator : ";
-    cin >> s_numerator;
-    cout << "Enter denominator : ";
-    cin >> s_denominator;
-    if (s_denominator == 0)
-    {
-        cout << "Denominator cannot be equal to zero" << endl;
-        s_denominator = 1;
-        system("cls");
-    }
-    system("cls");
-    cout << "Select operation : ";
-    cin >> operation;
+	cout << "Enter first fraction\nEnter numerator : ";
+	cin >> numerator;
+	cout << "Enter denominator : ";
+	cin >> denominator;
+	system("cls");
+	cout << "Enter second fraction\nEnter numerator : ";
+	cin >> s_numerator;
+	cout << "Enter denominator : ";
+	cin >> s_denominator;
+	system("cls");
+	cout << "Select operation : ";
+	cin >> operation;
+	system("cls");
 }
 
-void Fraction::resultFraction()
+void Fraction::FractionResult(int& numerator, int& denominator)
 {
-    int nod = 1;
-    for (int i = 2; i <= (numerator < denominator ? numerator : denominator); i++)
-    {
-        if (numerator % i == 0 && denominator % i == 0)
-        {
-            nod = i;
-        }
-    }
-
-    int resultNum = numerator / nod;
-    int resultDenom = denominator / nod;
-
-    if (resultDenom == 1)
-    {
-        cout << "Result: " << resultNum << endl;
-    }
-    else
-    {
-        cout << "Result:\n" << resultNum << "\n"
-            << char(196) << "\n"
-            << resultDenom << endl;
-    }
+	if (denominator == 1)
+	{
+		cout << "Result : " << numerator << endl;
+	}
+	else
+	{
+		int NOD = 1;
+		for (int i = 2; i <= (numerator < denominator ? numerator : denominator); i++) 
+		{
+			if (numerator % i == 0 && denominator % i == 0) 
+			{
+				NOD = i;
+			}
+		}
+		numerator /= NOD; denominator /= NOD;
+		cout << "Result :\n" << numerator << "\n" << char(196) << "\n" << denominator << endl;
+	}
 }
 
-void Fraction::plusFraction()
+void Fraction::FractionAdd(int& r_numerator, int& r_denominator)
 {
-    int resultNum = numerator * s_denominator + s_numerator * denominator;
-    int resultDenom = denominator * s_denominator;
-    resultFraction();
+	r_numerator = (numerator * s_denominator) + (numerator * s_denominator);
+	r_denominator = denominator * s_denominator;
+	FractionResult(r_numerator, r_denominator);
 }
 
-void Fraction::minusFraction()
+void Fraction::FractionSubtract(int& r_numerator, int& r_denominator)
 {
-    int resultNum = numerator * s_denominator - s_numerator * denominator;
-    int resultDenom = denominator * s_denominator;
-    resultFraction();
+	r_numerator = (numerator * s_denominator) - (s_numerator * denominator);
+	r_denominator = denominator * s_denominator;
+	FractionResult(r_numerator, r_denominator);
 }
 
-void Fraction::multiplyFraction()
+void Fraction::FractionMultiply(int& r_numerator, int& r_denominator)
 {
-    int resultNum = numerator * s_numerator;
-    int resultDenom = denominator * s_denominator;
-    resultFraction();
+	r_numerator = numerator * s_numerator;
+	r_denominator = denominator * s_denominator;
+	FractionResult(r_numerator, r_denominator);
 }
 
-void Fraction::divideFraction()
+void Fraction::FractionDivide(int& r_numerator, int& r_denominator)
 {
-    int resultNum = numerator * s_denominator;
-    int resultDenom = denominator * s_numerator;
-    resultFraction();
+	r_numerator = numerator * s_denominator;
+	r_denominator = s_numerator * denominator;
+	FractionResult(r_numerator, r_denominator);
 }
 
-void Fraction::operationFraction()
+void Fraction::FractionOperation(int& r_numerator, int& r_denominator)
 {
-    switch (operation)
-    {
-    case '+':
-        plusFraction();
-        break;
-    case '-':
-        minusFraction();
-        break;
-    case '*':
-        multiplyFraction();
-        break;
-    case '/':
-        divideFraction();
-        break;
-    default:
-        cout << "Wrong operation" << endl;
-        break;
-    }
+	switch (operation)
+	{
+	case '+':
+		FractionAdd(r_numerator, r_denominator);
+		break;
+	case '-':
+		FractionAdd(r_numerator, r_denominator);
+		break;
+	case '*':
+		FractionAdd(r_numerator, r_denominator);
+		break;
+	case '/':
+		FractionAdd(r_numerator, r_denominator);
+		break;
+	default:
+		cout << "Wrong operation" << endl;
+		break;
+	}
 }
